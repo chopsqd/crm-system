@@ -1,5 +1,11 @@
 const express = require('express')
+const mongoose = require('mongoose')
+const {MONGO_URI} = require('./config/keys')
 const app = express()
+
+mongoose.connect(MONGO_URI)
+    .then(() => console.log('MongoDB connected!'))
+    .catch(error => console.log('MongoDB connection  error: ', error))
 
 const analyticsRouter = require('./routes/analytics')
 const authRouter = require('./routes/auth')

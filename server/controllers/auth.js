@@ -2,6 +2,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require('../models/User')
 const {JWT_KEY} = require("../config/keys");
+const errorHandler = require("../utils/errorHandler");
 
 module.exports.login = async function (req, res) {
     try {
@@ -17,12 +18,12 @@ module.exports.login = async function (req, res) {
             return res.status(401).json({message: "Некорректные данные входа"})
         }
 
-        const token = jwt.sign({id: user._id}, JWT_KEY, {expiresIn: "1h"})
+        const token = jwt.sign({userId: user._id}, JWT_KEY, {expiresIn: "1h"})
 
         return res.status(200).json({token: `Bearer ${token}`})
     } catch (error) {
         console.log('Error: ', error)
-        res.status(500).json({message: "Внутренняя ошибка сервера"})
+        errorHandler(res, error)
     }
 }
 
@@ -43,6 +44,6 @@ module.exports.register = async function (req, res) {
         return res.status(201).json(user)
     } catch (error) {
         console.log('Error: ', error)
-        res.status(500).json({message: "Внутренняя ошибка сервера"})
+        errorHandler(res, error)
     }
 }

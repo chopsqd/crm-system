@@ -1,17 +1,16 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const passport = require('passport')
 const {MONGO_URI} = require('./config/keys')
+const {analyticsRouter, authRouter, categoryRouter, orderRouter, positionRouter} = require("./routes");
 const app = express()
 
 mongoose.connect(MONGO_URI)
     .then(() => console.log('MongoDB connected!'))
     .catch(error => console.log('MongoDB connection  error: ', error))
 
-const analyticsRouter = require('./routes/analytics')
-const authRouter = require('./routes/auth')
-const categoryRouter = require('./routes/category')
-const orderRouter = require('./routes/order')
-const positionRouter = require('./routes/position')
+app.use(passport.initialize())
+require('./middleware/passport')(passport)
 
 app.use(require('cors')())
 app.use(require('morgan')('dev'))

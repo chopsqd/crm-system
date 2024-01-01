@@ -14,6 +14,7 @@ require('./middleware/passport')(passport)
 
 app.use(require('cors')())
 app.use(require('morgan')('dev'))
+app.use('/uploads', express.static('uploads'))
 app.use(express.json())
 
 app.use('/api/analytics', analyticsRouter)

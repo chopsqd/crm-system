@@ -4,6 +4,7 @@ import {AuthLayoutComponent} from './shared/layouts/auth-layout/auth-layout.comp
 import {MainLayoutComponent} from './shared/layouts/main-layout/main-layout.component';
 import {LoginPageComponent} from './login-page/login-page.component';
 import {RegisterPageComponent} from './register-page/register-page.component';
+import {AuthGuard} from "./shared/classes/auth.guard";
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import {RegisterPageComponent} from './register-page/register-page.component';
       {
         path: '',
         component: MainLayoutComponent,
+        canActivate: [AuthGuard],
         children: []
       }
     ])

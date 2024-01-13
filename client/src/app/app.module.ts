@@ -8,8 +8,10 @@ import {AppRoutingModule} from './app-routing.module';
 import {AuthLayoutComponent} from './shared/layouts/auth-layout/auth-layout.component';
 import {MainLayoutComponent} from './shared/layouts/main-layout/main-layout.component';
 import {RegisterPageComponent} from './register-page/register-page.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AuthService} from "./shared/services/auth.service";
+import {AuthGuard} from "./shared/classes/auth.guard";
+import {TokenInterceptor} from "./shared/classes/token.interceptor";
 
 @NgModule({
   declarations: [
@@ -26,7 +28,15 @@ import {AuthService} from "./shared/services/auth.service";
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [AuthService],
+  providers: [
+    AuthService,
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      multi: true,
+      useClass: TokenInterceptor
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

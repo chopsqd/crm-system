@@ -5,6 +5,11 @@ import {MainLayoutComponent} from './shared/layouts/main-layout/main-layout.comp
 import {LoginPageComponent} from './login-page/login-page.component';
 import {RegisterPageComponent} from './register-page/register-page.component';
 import {AuthGuard} from "./shared/classes/auth.guard";
+import {OverviewPageComponent} from "./overview-page/overview-page.component";
+import {AnalyticsPageComponent} from "./analytics-page/analytics-page.component";
+import {HistoryPageComponent} from "./history-page/history-page.component";
+import {OrderPageComponent} from "./order-page/order-page.component";
+import {CategoriesPageComponent} from "./categories-page/categories-page.component";
 
 @NgModule({
   imports: [
@@ -15,14 +20,20 @@ import {AuthGuard} from "./shared/classes/auth.guard";
         children: [
           {path: 'login', component: LoginPageComponent},
           {path: 'register', component: RegisterPageComponent},
-          {path: '**', redirectTo: '/login'}
+          {path: '', redirectTo: '/login', pathMatch: 'full'}
         ]
       },
       {
         path: '',
         component: MainLayoutComponent,
         canActivate: [AuthGuard],
-        children: []
+        children: [
+          {path: 'overview', component: OverviewPageComponent},
+          {path: 'analytics', component: AnalyticsPageComponent},
+          {path: 'history', component: HistoryPageComponent},
+          {path: 'order', component: OrderPageComponent},
+          {path: 'categories', component: CategoriesPageComponent},
+        ]
       }
     ])
   ],

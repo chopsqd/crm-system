@@ -20,7 +20,7 @@ import {CategoriesPageComponent} from "./categories-page/categories-page.compone
         children: [
           {path: 'login', component: LoginPageComponent},
           {path: 'register', component: RegisterPageComponent},
-          {path: '', redirectTo: '/login', pathMatch: 'full'}
+          {path: '', redirectTo: 'login', pathMatch: 'full'}
         ]
       },
       {
@@ -33,6 +33,7 @@ import {CategoriesPageComponent} from "./categories-page/categories-page.compone
           {path: 'history', component: HistoryPageComponent},
           {path: 'order', component: OrderPageComponent},
           {path: 'categories', component: CategoriesPageComponent},
+          {path: '**', redirectTo: 'overview'},
         ]
       }
     ])

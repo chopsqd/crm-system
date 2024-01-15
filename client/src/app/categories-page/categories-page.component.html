@@ -1,3 +1,36 @@
-<p>
-  categories-page works!
-</p>
+<div class="page-title">
+  <h4>Категории</h4>
+  <button
+    class="waves-effect waves-light btn grey darken-1"
+    routerLink="/categories/new"
+  >
+    Добавить категорию
+  </button>
+</div>
+
+<div
+  class="row"
+  *ngIf="categories$ | async as categories; else loader"
+>
+  <div class="col s12">
+    <div class="collection" *ngIf="categories.length; else empty">
+      <a
+        class="collection-item"
+        [routerLink]="['/categories', category._id]"
+        *ngFor="let category of categories"
+      >
+        {{ category.name }}
+      </a>
+    </div>
+
+    <ng-template #empty>
+      <p class="center">
+        У Вас нет ни одной категории
+      </p>
+    </ng-template>
+  </div>
+</div>
+
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>

@@ -15,4 +15,26 @@ export class CategoriesService {
   getById(id: string): Observable<ICategory> {
     return this.http.get<ICategory>(environment.API_LINK + `api/category/${id}`)
   }
+
+  create(name: string, image?: File): Observable<ICategory> {
+    const formData = new FormData()
+
+    if(image) {
+      formData.append('image', image, image.name)
+    }
+    formData.append('name', name)
+
+    return this.http.post<ICategory>(environment.API_LINK + 'api/category', formData)
+  }
+
+  update(id: string, name: string, image?: File): Observable<ICategory> {
+    const formData = new FormData()
+
+    if(image) {
+      formData.append('image', image, image.name)
+    }
+    formData.append('name', name)
+
+    return this.http.patch<ICategory>(environment.API_LINK + `api/category/${id}`, formData)
+  }
 }

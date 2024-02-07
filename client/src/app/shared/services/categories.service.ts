@@ -9,11 +9,11 @@ export class CategoriesService {
   constructor(private http: HttpClient) {}
 
   fetch(): Observable<ICategory[]> {
-    return this.http.get<ICategory[]>(environment.API_LINK + 'api/category')
+    return this.http.get<ICategory[]>('api/category')
   }
 
   getById(id: string): Observable<ICategory> {
-    return this.http.get<ICategory>(environment.API_LINK + `api/category/${id}`)
+    return this.http.get<ICategory>(`api/category/${id}`)
   }
 
   create(name: string, image?: File): Observable<ICategory> {
@@ -24,7 +24,7 @@ export class CategoriesService {
     }
     formData.append('name', name)
 
-    return this.http.post<ICategory>(environment.API_LINK + 'api/category', formData)
+    return this.http.post<ICategory>('api/category', formData)
   }
 
   update(id: string, name: string, image?: File): Observable<ICategory> {
@@ -35,6 +35,6 @@ export class CategoriesService {
     }
     formData.append('name', name)
 
-    return this.http.patch<ICategory>(environment.API_LINK + `api/category/${id}`, formData)
+    return this.http.patch<ICategory>(`api/category/${id}`, formData)
   }
 }

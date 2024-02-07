@@ -38,7 +38,7 @@ module.exports.create = async function (req, res) {
         const category = new Category({
             name: req.body.name,
             user: req.user.id,
-            imageSrc: req.file ? req.file.path : ''
+            imgSrc: req.file ? req.file.path : ''
         })
 
         await category.save()
@@ -56,7 +56,7 @@ module.exports.update = async function (req, res) {
         }
 
         if(req.file) {
-            updated.imageSrc = req.file.path
+            updated.imgSrc = req.file.path
         }
 
         const category = await Category.findOneAndUpdate(

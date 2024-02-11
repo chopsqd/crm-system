@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
-import {ICategory} from "../interfaces";
+import {ICategory, IMessage} from "../interfaces";
 import {Observable} from "rxjs";
 
 @Injectable()
@@ -36,5 +36,9 @@ export class CategoriesService {
     formData.append('name', name)
 
     return this.http.patch<ICategory>(`api/category/${id}`, formData)
+  }
+
+  delete(id: string): Observable<IMessage> {
+    return this.http.delete<IMessage>(`api/category/${id}`)
   }
 }

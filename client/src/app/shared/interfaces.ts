@@ -20,4 +20,5 @@ export interface IPosition {
   category: string
   _id?: string
   user?: string
+  quantity?: number
 }

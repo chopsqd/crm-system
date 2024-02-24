@@ -37,3 +37,9 @@ export interface IOrderPosition {
   quantity: number
   _id?: string
 }
+
+export interface IFilter {
+  start?: Date
+  end?: Date
+  order?: number
+}

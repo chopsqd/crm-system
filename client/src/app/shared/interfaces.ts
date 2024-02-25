@@ -55,3 +55,14 @@ export interface IOverviewItem {
   yesterday: number
   isHigher: number
 }
+
+export interface IAnalytics {
+  average: number
+  chart: IChart[]
+}
+
+export interface IChart {
+  gain: number
+  order: number
+  label: string
+}

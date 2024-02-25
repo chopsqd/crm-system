@@ -43,3 +43,15 @@ export interface IFilter {
   end?: Date
   order?: number
 }
+
+export interface IOverview {
+  gain: IOverviewItem
+  orders: IOverviewItem
+}
+
+export interface IOverviewItem {
+  percent: number
+  compare: number
+  yesterday: number
+  isHigher: number
+}
